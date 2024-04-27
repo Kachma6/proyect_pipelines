@@ -80,5 +80,13 @@ pipeline {
         //     }
             
         // }
+         stage("Push artefactory"){
+            steps{
+                script{
+                    sh "hostname"
+                    echo "probando" > nuevo.text
+                }
+            }
+        }
     }
 }
