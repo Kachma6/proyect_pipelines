@@ -115,7 +115,7 @@ pipeline {
                     sh "pwd"
                     sh "cd /home/workspace/APP-DEV/buil_app"
                      sh "pwd"
-                    script {
+                   // script {
                     // Construir la imagen Docker
                     sh "docker build -t prueba:1.0 ."
                     // docker.build('prueba:latest')
