@@ -39,22 +39,23 @@ pipeline {
                 sh "chmod -R +rx /opt/jdk21"
                 sh "mvn -v"
                 sh "mvn clean package -Dmaven.test.skip=true -U"
-                sh "mv target/*.jar target/app.jar"
-                stash includes: 'target/app.jar', name: 'backartifact'
-                archiveArtifacts artifacts: 'target/app.jar', onlyIfSuccessful:true
-                sh "cp target/app.jar /tmp/"
+                sh "pwd"
+                // sh "mv target/*.jar target/app.jar"
+                // stash includes: 'target/app.jar', name: 'backartifact'
+                // archiveArtifacts artifacts: 'target/app.jar', onlyIfSuccessful:true
+                // sh "cp target/app.jar /tmp/"
             }
             
         }
-        stage("Test vulnerability"){
-            steps{
-                sh "cd /tmp/"
-                sh "chmod +x /grype"
-                sh "/grype /tmp/app.jar > informe-scan.txt"
-                sh "pwd"
-                archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
-            }
-        }
+        // stage("Test vulnerability"){
+        //     steps{
+        //         sh "cd /tmp/"
+        //         sh "chmod +x /grype"
+        //         sh "/grype /tmp/app.jar > informe-scan.txt"
+        //         sh "pwd"
+        //         archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
+        //     }
+        // }
         // stage("sonarqube analysis"){
         //     steps{
                 
