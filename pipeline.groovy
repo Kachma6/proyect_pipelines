@@ -91,7 +91,7 @@ pipeline {
         //       }
         //   }
 
-             agent any
+            
             steps{
                 script{
                     sh "pwd"
@@ -108,7 +108,8 @@ pipeline {
 
                     // sh "cd /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app/create-imagen"
                     // sh "ls"
-
+                    sh "pwd"
+                    echo "$PATH"
                     sh "docker --version"
                     // sh "docker build -t prueba:0.1 ."
                     //  sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
