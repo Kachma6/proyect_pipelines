@@ -117,8 +117,9 @@ pipeline {
                      sh "pwd"
                     script {
                     // Construir la imagen Docker
-                    docker.build('prueba:latest')
-                    }
+                    sh "docker build -t prueba:1.0 ."
+                    // docker.build('prueba:latest')
+                    // }
                     // sh "docker build -t prueba:0.1 ."
                     //  sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
