@@ -95,7 +95,7 @@ pipeline {
                     sh "pwd"
 
                     sh "mkdir create-imagen"
-                    sh "mv Dockefile create-imagen/ "
+                    sh "mv Dockerfile create-imagen/ "
                     sh "mv target/app.jar create-imagen/ "
 
                     sh "cd create-imagen"
