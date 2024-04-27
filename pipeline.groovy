@@ -81,10 +81,14 @@ pipeline {
             
         // }
          stage("Push artefactory"){
+            agent any
             steps{
                 script{
-                    sh "hostname"
-                    echo "probando" > nuevo.text
+                    unstach 'backartifact'
+                   
+                    sh "sshpass -d admin123 scp  /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app_backend/target/app.jar userver@192.168.137.5/home/userver/"
+                    // sh "hostname"
+                    // echo "probando" > nuevo.text
                 }
             }
         }
