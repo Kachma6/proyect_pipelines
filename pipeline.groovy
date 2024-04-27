@@ -1,3 +1,5 @@
+def url_repo = "https://github.com/Kachma6/DesafiosEducativosBackend.git"
+
 pipeline {
     // agent any
     agent{ 
@@ -11,6 +13,7 @@ pipeline {
     }
     environment{
         workspace="/data/"
+        string defacultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
     }
     stages {
         stage("Limpiar"){
@@ -21,7 +24,7 @@ pipeline {
         stage('Download proyect') {
             steps {
                 // Get some code from a GitHub repository
-                git credentialsId: 'git_credentials', branch : "main", url:"https://github.com/Kachma6/DesafiosEducativosBackend.git"
+                git credentialsId: 'git_credentials', branch : "${BRANCH}", url: "${url_repo}"
                 echo "Proyecto descargado"
 
             }
@@ -49,30 +52,30 @@ pipeline {
                 archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
             }
         }
-        stage("sonarqube analysis"){
-            steps{
+        // stage("sonarqube analysis"){
+        //     steps{
                 
-                 script {
+        //          script {
                      
-                withSonarQubeEnv('Sonar_CI')    { 
-                def scannerHome = tool 'Sonar_CI'
-                sh "cp ${scannerHome}/conf/sonar-scanner.properties sonar-project.properties"
-                 writeFile encoding: "UTF-8", file: 'sonar-project.properties', text: """
-                sonar.projectKey=DesafiosEducativos
-                sonar.projectName=DesafiosEducativos
-                sonar.projectVersion=Desafiov1
-                sonar.sourceEncoding=UTF-8
-                sonar.sources=src/main/
-                sonar.java.binaries=target/classes
-                sonar.language=java
-                sonar.scm.provider=git
-                  """
-                      sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        //         withSonarQubeEnv('Sonar_CI')    { 
+        //         def scannerHome = tool 'Sonar_CI'
+        //         sh "cp ${scannerHome}/conf/sonar-scanner.properties sonar-project.properties"
+        //          writeFile encoding: "UTF-8", file: 'sonar-project.properties', text: """
+        //         sonar.projectKey=DesafiosEducativos
+        //         sonar.projectName=DesafiosEducativos
+        //         sonar.projectVersion=Desafiov1
+        //         sonar.sourceEncoding=UTF-8
+        //         sonar.sources=src/main/
+        //         sonar.java.binaries=target/classes
+        //         sonar.language=java
+        //         sonar.scm.provider=git
+        //           """
+        //               sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         
-                    }
-                 }
-            }
+        //             }
+        //          }
+        //     }
             
-        }
+        // }
     }
 }
