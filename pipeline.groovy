@@ -42,6 +42,7 @@ pipeline {
                 sh "pwd"
                 sh "mv target/*.jar target/app.jar"
                 stash includes: 'target/app.jar', name: 'backartifact'
+                stash includes: 'Dockerfile', name: 'docker'
                 archiveArtifacts artifacts: 'target/app.jar', onlyIfSuccessful:true
                 sh "cp target/app.jar /tmp/"
             }
@@ -88,7 +89,9 @@ pipeline {
                     sh "pwd"
                     
                     unstash 'backartifact'
+                    unstash 'docker'
                     sh "cd target"
+                    sh "ls"
                     sh "pwd"
 
                    
