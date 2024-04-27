@@ -111,9 +111,9 @@ pipeline {
                     sh "pwd"
                     echo "$PATH"
                     sh "docker --version"
-                         sh "docker images"
+                    sh "docker images"
                     sh "pwd"
-                    sh "cd /home/workspace/APP-DEV/buil_app$"
+                    sh "cd /home/workspace/APP-DEV/buil_app"
                      sh "pwd"
                     script {
                     // Construir la imagen Docker
