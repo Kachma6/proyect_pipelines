@@ -12,7 +12,7 @@ pipeline {
         // maven 'maven-3696'
     }
     parameters{
-        string defaultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
+        string defaultValue: 'main',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
     }
     environment{
         workspace="/data/"
@@ -40,10 +40,10 @@ pipeline {
                 sh "mvn -v"
                 sh "mvn clean package -Dmaven.test.skip=true -U"
                 sh "pwd"
-                // sh "mv target/*.jar target/app.jar"
-                // stash includes: 'target/app.jar', name: 'backartifact'
-                // archiveArtifacts artifacts: 'target/app.jar', onlyIfSuccessful:true
-                // sh "cp target/app.jar /tmp/"
+                sh "mv target/*.jar target/app.jar"
+                stash includes: 'target/app.jar', name: 'backartifact'
+                archiveArtifacts artifacts: 'target/app.jar', onlyIfSuccessful:true
+                sh "cp target/app.jar /tmp/"
             }
             
         }
@@ -87,7 +87,7 @@ pipeline {
                 script{
                     unstash 'backartifact'
                    
-                    sh "sshpass -d admin123 scp  /home/workspace/APP-DEV/buil_app/target/DesafiosEducativosBackend-0.0.1-SNAPSHOT.jar userver@192.168.137.5/home/userver/"
+                    sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app_backend/target/DesafiosEducativosBackend-0.0.1-SNAPSHOT.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
                     // echo "probando" > nuevo.text
                 }
