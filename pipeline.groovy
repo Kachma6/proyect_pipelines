@@ -86,9 +86,11 @@ pipeline {
             steps{
                 script{
                     sh "pwd"
-                    unstash 'backartifact'
+                    sh "cd target"
+                    sh "pwd"
+                    // unstash 'backartifact'
                    
-                    sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
+                    // sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
                     // echo "probando" > nuevo.text
                 }
