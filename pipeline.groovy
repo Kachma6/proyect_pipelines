@@ -83,27 +83,34 @@ pipeline {
             
         // }
          stage("Push artefactory"){
-            agent any
+        //         agent {
+        //     docker {
+        //       image 'docker:latest'
+        //       args '-v /var/run/docker.sock:/var/run/docker.sock'
+        //       }
+        //   }
+
+             agent any
             steps{
                 script{
                     sh "pwd"
                     
-                    unstash 'backartifact'
-                    unstash 'docker'
-                    sh "cd target"
-                    sh "ls"
-                    sh "pwd"
+                    // unstash 'backartifact'
+                    // unstash 'docker'
+                    // sh "cd target"
+                    // sh "ls"
+                    // sh "pwd"
 
-                    sh "mkdir create-imagen"
-                    sh "mv Dockerfile create-imagen/ "
-                    sh "mv target/app.jar create-imagen/ "
+                    // sh "mkdir create-imagen"
+                    // sh "mv Dockerfile create-imagen/ "
+                    // sh "mv target/app.jar create-imagen/ "
 
-                    sh "cd /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app/create-imagen"
-                    sh "ls"
+                    // sh "cd /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app/create-imagen"
+                    // sh "ls"
 
                     sh "docker --version"
-                    sh "docker build -t prueba:0.1 ."
-                    // sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
+                    // sh "docker build -t prueba:0.1 ."
+                    //  sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
                     // echo "probando" > nuevo.text
                 }
