@@ -94,7 +94,16 @@ pipeline {
                     sh "ls"
                     sh "pwd"
 
-                   
+                    sh "mkdir create-imagen"
+                    sh "mv Dockefile create-imagen/ "
+                    sh "mv target/app.jar create-imagen/ "
+
+                    sh "cd create-imagen"
+                    sh "ls"
+
+                    script {
+                    docker.build("DesafiosEducativosBackend:1.0")
+                     }
                     // sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
                     // echo "probando" > nuevo.text
