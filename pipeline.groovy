@@ -98,12 +98,11 @@ pipeline {
                     sh "mv Dockerfile create-imagen/ "
                     sh "mv target/app.jar create-imagen/ "
 
-                    sh "cd create-imagen"
+                    sh "cd /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app/create-imagen"
                     sh "ls"
 
-                    script {
-                    docker.build("DesafiosEducativosBackend:1.0")
-                     }
+                    sh "docker --version"
+                    sh "docker build -t prueba:0.1 ."
                     // sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
                     // echo "probando" > nuevo.text
