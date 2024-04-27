@@ -85,7 +85,7 @@ pipeline {
             agent any
             steps{
                 script{
-                    unstach 'backartifact'
+                    unstash 'backartifact'
                    
                     sh "sshpass -d admin123 scp  /home/workspace/APP-DEV/buil_app/target/DesafiosEducativosBackend-0.0.1-SNAPSHOT.jar userver@192.168.137.5/home/userver/"
                     // sh "hostname"
