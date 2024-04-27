@@ -13,7 +13,7 @@ pipeline {
     }
     environment{
         workspace="/data/"
-        string defacultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
+        string defaultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
     }
     stages {
         stage("Limpiar"){
