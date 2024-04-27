@@ -11,9 +11,12 @@ pipeline {
         // jdk 'java22'
         // maven 'maven-3696'
     }
+    parameters{
+        string defaultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
+    }
     environment{
         workspace="/data/"
-        string defaultValue: 'dev',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
+       
     }
     stages {
         stage("Limpiar"){
