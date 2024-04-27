@@ -3,7 +3,7 @@ def url_repo = "https://github.com/Kachma6/DesafiosEducativosBackend.git"
 pipeline {
     // agent any
     agent{ 
-        label 'slave_two'
+        label 'deploy'
     }
     tools {
         jdk "jdk21"
