@@ -36,7 +36,7 @@ pipeline {
             steps{
                 echo "iniciando build"
                 sh "pwd"
-                sh "chmod -R +rx /opt/jdk21"
+                sh "chmod -R +rx /home/jdk21"
                 sh "mvn -v"
                 sh "mvn clean package -Dmaven.test.skip=true -U"
                 sh "pwd"
