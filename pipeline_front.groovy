@@ -93,13 +93,11 @@ pipeline {
 
             }
         }
-        post{
+        
+    }
+     post{
             always{
                slackSend channel:"#dev", color:"good",message:"El pipeline ha sido ejecutado una vez mas"
             }
         }
-       
-      
-        
-    }
 }
