@@ -96,18 +96,7 @@ pipeline {
                 script{
                     sh "pwd"
                     
-                    // unstash 'backartifact'
-                    // unstash 'docker'
-                    // sh "cd target"
-                    // sh "ls"
-                    // sh "pwd"
-
-                    // sh "mkdir create-imagen"
-                    // sh "mv Dockerfile create-imagen/ "
-                    // sh "mv target/app.jar create-imagen/ "
-
-                    // sh "cd /data/jenkins/jenkins_home/workspace/APP-DEV/buil_app/create-imagen"
-                    // sh "ls"
+                
                     sh "pwd"
                     echo "$PATH"
                     sh "docker --version"
@@ -117,14 +106,20 @@ pipeline {
                      sh "pwd"
                    // script {
                     // Construir la imagen Docker
-                    sh "docker build -t prueba:1.0 ."
-                    // docker.build('prueba:latest')
-                    // }
-                    // sh "docker build -t prueba:0.1 ."
-                    //  sh "sshpass -p admin123 scp  /data/jenkins/workspace/APP-DEV/buil_app/target/app.jar userver@192.168.137.5/home/userver/"
-                    // sh "hostname"
-                    // echo "probando" > nuevo.text
+                  //  sh "docker build -t prueba:1.0 ."
+                   
+                   sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
+                   sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
                 }
+
+                //   script{
+                //     unstash 'backartifact'
+                //     sh "rm /home/publish/app.jar | true"
+                //     sh "target/app.jar /home/publish/"
+                //     sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true; cd /home/publish/ ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
+                //     sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
+                // }
+                
             }
         }
     }
