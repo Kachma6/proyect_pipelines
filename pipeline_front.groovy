@@ -35,6 +35,9 @@ pipeline {
                sh "pwd"
                sh "npm version"
                sh "npm install"
+               sh "npm run build"
+
+            
               
 
             }
