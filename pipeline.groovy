@@ -40,7 +40,8 @@ pipeline {
                  sh "chmod -R +rx /home/maven-369"
                 sh "mvn -v"
                 //sh "mvn clean package -Dmaven.test.skip=true -U"
-                 sh "mvn clean compile package -Dmaven.test.skip=true -U"
+                //  sh "mvn clean compile package -Dmaven.test.skip=true -U"
+                 sh "mvn clean install -Dmaven.test.skip=true -U"
                 sh "pwd"
                 sh "mv target/*.jar target/app.jar"
                 stash includes: 'target/app.jar', name: 'backartifact'
