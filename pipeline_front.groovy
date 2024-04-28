@@ -1,4 +1,4 @@
-def url_repo = "https://github.com/Kachma6/DesafiosEducativos.git"
+def url_repo = "https://github.com/Kachma6/SquechuleUMSSFCE.git"
 
 pipeline {
     // agent any
