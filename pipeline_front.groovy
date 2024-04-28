@@ -95,7 +95,7 @@ pipeline {
         }
         stage("slack"){
             steps{
-               slackSend color: "good", message: "Message from Jenkins Pipeline"
+               slackSend message: "Message from Jenkins Pipeline"
             }
         }
        
