@@ -117,7 +117,7 @@ pipeline {
                   script{
                     unstash 'backartifact'
                     sh "rm /home/publish/app.jar | true"
-                    sh "target/app.jar /home/publish/"
+                    sh "cp target/app.jar /home/publish/"
                     sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true; cd /home/publish/ ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
                     sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
                 }
