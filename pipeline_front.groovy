@@ -93,9 +93,9 @@ pipeline {
 
             }
         }
-        stage("slack"){
-            steps{
-               slackSend message: "Message from Jenkins Pipeline"
+        post{
+            always{
+               slackSend channel:"#dev", color:"good",message:"El pipeline ha sido ejecutado una vez mas"
             }
         }
        
