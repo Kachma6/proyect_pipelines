@@ -55,7 +55,7 @@ pipeline {
                 sh "chmod +x /home/grype"
                 sh "pwd"
                 
-                sh "home/grype /tmp/app.jar > informe-scan.txt"
+                sh "/home/grype /tmp/app.jar > informe-scan.txt"
                 sh "pwd"
                 archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
             }
