@@ -5,7 +5,10 @@ pipeline {
     agent{ 
         label 'deploy'
     }
-    
+     tools {
+        node 'nodejs'
+        jdk 'jdk21'
+    }
     parameters{
         string defaultValue: 'main',description:'colocar el branch del deploy', name: 'BRANCH', trim: false
     }
@@ -30,6 +33,7 @@ pipeline {
         stage('Build') {
             steps {
                sh "pwd"
+               sh "npm version"
                sh "npm install"
               
 
