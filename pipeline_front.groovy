@@ -95,7 +95,7 @@ pipeline {
         stage("Deployment"){
             steps{
                     sh "pwd"
-                    sh "/home/deploy"
+                    sh "cd /home/deploy"
                     sh "chmod -R +rx /home/deploy"
                     sh "docker-compose stop reac | true ; docker-compose rm reac | true ; docker-compose up -d reac"
                    
