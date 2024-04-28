@@ -38,7 +38,7 @@ pipeline {
                sh "npm run build"
                sh "pwd"
                sh "tar -rf dist.tar dist/"
-               archiveArtifacts artifacts: 'dist.tar', onlyIfSuccessful=true
+               archiveArtifacts artifacts: 'dist.tar', onlyIfSuccessful:true
               sh "cp dist.tar /tmp/"
             }
         } 
