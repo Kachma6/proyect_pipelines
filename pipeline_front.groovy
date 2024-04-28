@@ -78,12 +78,10 @@ pipeline {
         //     }
       //      
        // }
-        stage('pull') {
+        stage('Pull to Nexus') {
             steps {
                sh "pwd"
                sh "npm version"
-            //    sh "npm install"
-            //    sh "npm run build"
                sh "pwd"
 
 
@@ -93,11 +91,22 @@ pipeline {
 
             }
         }
+
+        stage("Deployment"){
+            steps{
+                    sh "pwd"
+                    sh "/home/deploy"
+                    sh "docker-compose stop reac | true ; docker-compose rm reac | true ; docker-compose up -d reac"
+                   
+            }
+        }
         
     }
-     post{
+     post { 
             always{
-               slackSend channel:"#dev", color:"good",message:"El pipeline ha sido ejecutado una vez mas"
+               slackSend channel:'#dev', 
+               color:'good', 
+               message:"El pipeline ha sido ejecutado una vez mas"
             }
         }
 }
