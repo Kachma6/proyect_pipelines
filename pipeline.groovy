@@ -95,26 +95,33 @@ pipeline {
 
             
             steps{
-                script{
-                    sh "pwd"
+                // script{
+                //     sh "pwd"
                     
                 
-                    sh "pwd"
-                    echo "$PATH"
-                    sh "docker --version"
-                    sh "docker images"
-                    sh "pwd"
-                    sh "cd /home/workspace/APP-DEV/buil_app"
-                     sh "pwd"
-                   // script {
-                    // Construir la imagen Docker
-                  //  sh "docker build -t prueba:1.0 ."
+                //     sh "pwd"
+                //     echo "$PATH"
+                //     sh "docker --version"
+                //     sh "docker images"
+                //     sh "pwd"
+                //     sh "cd /home/workspace/APP-DEV/buil_app"
+                //      sh "pwd"
+                //    // script {
+                //     // Construir la imagen Docker
+                //   //  sh "docker build -t prueba:1.0 ."
                    
-                   sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
-                   sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
-                }
+                //    sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
+                //    sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
+                // }
 
-                //   script{
+                  script{
+                    unstash 'backartifact'
+                    sh "rm /home/publish/app.jar | true"
+                    sh "target/app.jar /home/publish/"
+                    sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true; cd /home/publish/ ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
+                    sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
+                }
+                 //   script{
                 //     unstash 'backartifact'
                 //     sh "rm /home/publish/app.jar | true"
                 //     sh "target/app.jar /home/publish/"
