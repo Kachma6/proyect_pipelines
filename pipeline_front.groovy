@@ -6,7 +6,7 @@ pipeline {
         label 'deploy'
     }
      tools {
-        node 'nodejs'
+        nodejs 'nodejs'
         jdk 'jdk21'
     }
     parameters{
