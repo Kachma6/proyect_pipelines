@@ -41,7 +41,8 @@ pipeline {
                archiveArtifacts artifacts: 'dist.tar', onlyIfSuccessful=true
               sh "cp dist.tar /tmp/"
             }
-        } stage("Test vulnerability"){
+        } 
+        stage("Test vulnerability"){
             steps{
                 sh "cd /tmp/"
                 sh "chmod +x /home/grype"
@@ -52,7 +53,7 @@ pipeline {
                 archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
             }
         }
-        stage('Build') {
+        stage('pull') {
             steps {
                sh "pwd"
                sh "npm version"
