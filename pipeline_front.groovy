@@ -36,8 +36,11 @@ pipeline {
                sh "npm version"
                sh "npm install"
                sh "npm run build"
+               sh "pwd"
 
-            
+
+                  sh "docker rmi 192.168.137.5:8082/v2/repository/docker/back-prueba:latest | true ; docker build -t 192.168.137.5:8082/v2/repository/docker/back-prueba:latest ."
+                   sh "docker push 192.168.137.5:8082/v2/repository/docker/back-prueba:latest "
               
 
             }

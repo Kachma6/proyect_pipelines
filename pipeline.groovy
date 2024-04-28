@@ -49,15 +49,17 @@ pipeline {
             }
             
         }
-        // stage("Test vulnerability"){
-        //     steps{
-        //         sh "cd /tmp/"
-        //         sh "chmod +x /grype"
-        //         sh "/grype /tmp/app.jar > informe-scan.txt"
-        //         sh "pwd"
-        //         archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
-        //     }
-        // }
+        stage("Test vulnerability"){
+            steps{
+                sh "cd /tmp/"
+                sh "chmod +x /grype"
+                sh "pwd"
+                
+                sh "home/grype /tmp/app.jar > informe-scan.txt"
+                sh "pwd"
+                archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
+            }
+        }
         // stage("sonarqube analysis"){
         //     steps{
                 
