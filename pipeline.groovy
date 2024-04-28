@@ -52,7 +52,7 @@ pipeline {
         stage("Test vulnerability"){
             steps{
                 sh "cd /tmp/"
-                sh "chmod +x /grype"
+                sh "chmod +x /home/grype"
                 sh "pwd"
                 
                 sh "home/grype /tmp/app.jar > informe-scan.txt"
