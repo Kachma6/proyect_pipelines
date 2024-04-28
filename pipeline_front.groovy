@@ -53,6 +53,31 @@ pipeline {
                 archiveArtifacts artifacts: 'informe-scan.txt', onlyIfSuccessful:true
             }
         }
+        //   stage("sonarqube analysis"){
+        //     steps{
+                
+        //          script {
+                     
+        //         withSonarQubeEnv('Sonar_CI')    { 
+        //         def scannerHome = tool 'Sonar_CI'
+        //         sh "cp ${scannerHome}/conf/sonar-scanner.properties sonar-project.properties"
+        //          writeFile encoding: "UTF-8", file: 'sonar-project.properties', text: """
+        //         sonar.projectKey=Horarios
+        //         sonar.projectName=Horarios
+        //         sonar.projectVersion=horarios
+        //         sonar.sourceEncoding=UTF-8
+        //         sonar.sources=src/
+        //         sonar.java.binaries=dist
+        //         sonar.language=javascript
+        //         sonar.scm.provider=git
+        //           """
+        //               sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        
+        //             }
+        //          }
+        //     }
+      //      
+       // }
         stage('pull') {
             steps {
                sh "pwd"
@@ -66,6 +91,11 @@ pipeline {
                    sh "docker push 192.168.137.5:8082/v2/repository/docker/front-prueba:latest "
               
 
+            }
+        }
+        stage("slack"){
+            steps{
+               slackSend color: "good", message: "Message from Jenkins Pipeline"
             }
         }
        
