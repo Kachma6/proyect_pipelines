@@ -98,8 +98,9 @@ pipeline {
                     sh "cd /home/deploy"
                     sh "chmod -R +rx /home/deploy/"
                     sh "ls"
+                    sh "pwd"
                     sh "docker-compose stop reac | true ; docker-compose rm reac | true ;" 
-                     sh "docker-compose -f docker-compose.yml up -d reac"
+                     sh "docker-compose -f /home/deploy/docker-compose.yml up -d reac"
                    
             }
         }
